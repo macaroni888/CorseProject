@@ -24,8 +24,14 @@ def render_var_forecast_block(df_st, df_raw):
 
     ofz_cols = [f'bond_ru_ofz_yield_{m}' for m in ['3m', '6m', '9m', '1y', '2y', '3y', '5y', '7y', '10y', '15y', '20y']]
     macro_cols = [
-        'macro_ru_key_rate', 'macro_ru_ruonia_rate', 'macro_ru_inflation_yoy',
-        'brent_price', 'bond_ru_corp_yield', 'macro_ru_labor_unemployment_rate', 'macro_kz_base_rate'
+        'macro_ru_key_rate',
+        'macro_ru_ruonia_rate',
+        'macro_ru_cpi_food_yoy',
+        'brent_price',
+        'bond_ru_corp_yield',
+        'bond_ru_corp_price_close',
+        'macro_kz_base_rate',
+        'bond_kz_govt_cp_total'
     ]
 
     missing_cols = [c for c in ofz_cols + macro_cols if c not in df_st.columns]
@@ -38,10 +44,11 @@ def render_var_forecast_block(df_st, df_raw):
         'macro_ru_key_rate': 23,
         'macro_kz_base_rate': 53,
         'macro_ru_ruonia_rate': 1,
-        'macro_ru_inflation_yoy': 0,
+        'macro_ru_cpi_food_yoy': 0,
         'brent_price': 0,
         'bond_ru_corp_yield': 0,
-        'macro_ru_labor_unemployment_rate': 0
+        'bond_ru_corp_price_close': 0,
+        'bond_kz_govt_cp_total': 0
     }
 
     for col, lag in optimal_lags.items():
